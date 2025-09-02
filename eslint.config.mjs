@@ -9,7 +9,23 @@ export default defineConfig([
     extends: ["js/recommended"],
   },
   {
-    files: ["**/*.{js,mjs,cjs}"],
+    // Browser globals for your src/
+    files: ["src/**/*.{js,mjs,cjs}"],
     languageOptions: { globals: globals.browser },
+  },
+  {
+    // Node globals for config files
+    files: [
+      "webpack.*.js",
+      "babel.config.js",
+      "jest.config.js",
+      "eslint.config.mjs",
+    ],
+    languageOptions: { globals: globals.node },
+  },
+  {
+    // Jest globals for tests
+    files: ["**/*.test.{js,mjs,cjs}"],
+    languageOptions: { globals: globals.jest },
   },
 ]);
